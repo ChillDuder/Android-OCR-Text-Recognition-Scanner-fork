@@ -31,7 +31,14 @@ Whether you want to build a document scanner, digitize receipts, or add text rec
 ---
 
 ## Screenshots
-*Add screenshots or GIFs of the OCR app in action for better SEO and user engagement*
+
+Below are some screenshots of the app in action:
+
+<p align="center">
+  <img src="app/src/main/res/drawable/screenshoot_1.jpeg" alt="Screenshot 1" width="250"/>
+  <img src="app/src/main/res/drawable/screenshoot_2.jpeg" alt="Screenshot 2" width="250"/>
+  <img src="app/src/main/res/drawable/screenshoot_3.jpeg" alt="Screenshot 3" width="250"/>
+</p>
 
 ---
 
