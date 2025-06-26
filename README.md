@@ -1,17 +1,16 @@
 <!--
-Android OCR Sample App | Optical Character Recognition | ML Kit | Tesseract | Google Cloud Vision | Open Source | Java | Kotlin | Mobile App | Image to Text
+Android OCR Text Recognition Scanner | Android OCR Sample App | Optical Character Recognition | ML Kit | Tesseract | Google Cloud Vision | Open Source | Java | Kotlin | Mobile App | Image to Text
 -->
 
-# Android OCR Sample App – Optical Character Recognition for Android (ML Kit, Tesseract, Cloud Vision)
+# Android OCR Text Recognition Scanner – Optical Character Recognition for Android (ML Kit, Tesseract, Cloud Vision)
 
-**Meta Description:**
-> Android OCRSample is an open-source Android app that demonstrates Optical Character Recognition (OCR) using Google ML Kit, Tesseract, and Google Cloud Vision. Easily extract text from images using your mobile device. Built with Java and Kotlin. Perfect for developers looking for an OCR sample app or image-to-text solution.
+> An open-source Android app to extract and recognize text from images using ML Kit, Tesseract, and Google Cloud Vision. Fast, accurate, and easy to use for all your image-to-text needs.
 
 ---
 
 ## Overview: Android OCR, Text Recognition & Image to Text
 
-**Android-OCRSample** is a powerful and easy-to-use Android application for Optical Character Recognition (OCR). This open-source project showcases how to extract text from images using three leading OCR engines:
+**Android OCR Text Recognition Scanner** is a powerful and easy-to-use Android application for Optical Character Recognition (OCR). This open-source project showcases how to extract text from images using three leading OCR engines:
 - **Google ML Kit Text Recognition API** (modern, on-device, fast)
 - **Tesseract OCR** (legacy, open-source, highly customizable)
 - **Google Cloud Vision API** (cloud-based, supports many languages)
@@ -45,8 +44,8 @@ Whether you want to build a document scanner, digitize receipts, or add text rec
 
 ### Clone & Open
 ```sh
-git clone <this-repo-url>
-cd Android-OCRSample
+git clone https://github.com/itsVnp/Android-OCR-Text-Recognition-Scanner.git
+cd Android-OCR-Text-Recognition-Scanner
 ```
 Open the project in Android Studio.
 
@@ -67,7 +66,7 @@ Open the project in Android Studio.
 
 ---
 
-## How to Use the Android OCR Sample App
+## How to Use the App
 - Launch the app on your Android device
 - Choose your OCR engine: ML Kit, Tesseract, or Cloud Vision
 - Select an image from the gallery or take a new photo
@@ -95,6 +94,12 @@ Open the project in Android Studio.
 - `app/src/main/assets/tessdata/` — Tesseract language data files
 - `app/src/main/res/layout/` — Android UI layouts
 - `app/build.gradle` — Gradle dependencies
+
+---
+
+## Disclaimer
+
+This project is provided for educational and demonstration purposes only. While every effort has been made to ensure the accuracy and reliability of the code, the project is provided "as is" without warranty of any kind. Use at your own risk. The authors and contributors are not responsible for any loss, damage, or legal issues that may arise from the use of this software. If you use third-party services (such as Google Cloud Vision), ensure you comply with their terms of service and privacy policies.
 
 ---
 
