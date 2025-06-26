@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:title="Note By Developer"
+        android:titleTextColor="?attr/colorOnPrimary"
+        app:navigationIcon="@drawable/round_back_24"
+        app:navigationIconTint="@color/colorOnPrimary"
+        android:elevation="4dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="24dp"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/placeholder_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="More features coming soon!"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:textColor="#333"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/developer_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="For any questions or queries,\nconnect with the developer:\n https://www.vivekanand.me/"
+            android:autoLink="web"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginTop="16dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_latest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Latest"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"/>
+
+    </LinearLayout>
+
+</LinearLayout> 
