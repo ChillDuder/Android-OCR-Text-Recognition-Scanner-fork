@@ -1,19 +1,14 @@
 package me.vivekanand.android_ocrsample
 
 import android.app.Activity
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.os.Build
 import android.os.Bundle
 import android.util.Base64
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,21 +23,16 @@ import java.io.File
 
 class ResultActivity : AppCompatActivity() {
 
-    private val CHANNEL_ID = "result_activity_channel"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // No UI — no setContentView
+        val imagePath = "/storage/emulated/0/NonSync/gctemp/g.jpg"
+        val bitmap = loadJpgAsBitmap(imagePath)
 
-        postNotification("ResultActivity started")
-
-        val bitmap = loadJpgAsBitmap("/storage/emulated/0/Download/sample.jpg")
         if (bitmap != null) {
             runCloudVisionOcrOnBitmap(bitmap)
         } else {
-            setResult(Activity.RESULT_CANCELED)
-            finish()
+            showError("Image not found or unreadable. #GCERR1")
         }
     }
 
@@ -62,7 +52,7 @@ class ResultActivity : AppCompatActivity() {
         val apiKey = prefs.getString("cloud_vision_api_key", null)
 
         if (apiKey.isNullOrBlank()) {
-            showOcrResult("Cloud OCR", "API key not found.")
+            showError("API key not found. #GCERR2")
             return
         }
 
@@ -102,16 +92,21 @@ class ResultActivity : AppCompatActivity() {
                         .optJSONObject("fullTextAnnotation")
                         ?.optString("text") ?: "No text found"
                 } else {
-                    "HTTP Error: ${response.code}"
+                    showError("HTTP error: ${response.code} #GCERR3")
+                    return@launch
                 }
 
                 runOnUiThread {
-                    showOcrResult("Cloud OCR", resultText)
+                    setResult(Activity.RESULT_OK, Intent().apply {
+                        putExtra("ocr_result", resultText)
+                    })
+                    finish()
                 }
+
             } catch (e: Exception) {
                 e.printStackTrace()
                 runOnUiThread {
-                    showOcrResult("Cloud OCR", "Error: ${e.message}")
+                    showError("Exception: ${e.message} #GCERR4")
                 }
             }
         }
@@ -124,33 +119,12 @@ class ResultActivity : AppCompatActivity() {
         return Base64.encodeToString(byteArray, Base64.NO_WRAP)
     }
 
-    private fun showOcrResult(title: String, message: String) {
-        postNotification("$title result: $message")
+    private fun showError(message: String) {
+        NotificationHelper.postErrorNotification(this, message)
 
-        val resultIntent = Intent().apply {
+        setResult(Activity.RESULT_CANCELED, Intent().apply {
             putExtra("ocr_result", message)
-        }
-        setResult(Activity.RESULT_OK, resultIntent)
+        })
         finish()
-    }
-
-    private fun postNotification(contentText: String) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                CHANNEL_ID, "Result Activity Channel",
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
-            getSystemService(NotificationManager::class.java)
-                .createNotificationChannel(channel)
-        }
-
-        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(android.R.drawable.ic_dialog_info)
-            .setContentTitle("ResultActivity")
-            .setContentText(contentText)
-            .setStyle(NotificationCompat.BigTextStyle().bigText(contentText))
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-
-        NotificationManagerCompat.from(this).notify(1001, builder.build())
     }
 }

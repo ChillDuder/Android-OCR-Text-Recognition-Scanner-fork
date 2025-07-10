@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Permissions -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+
+    <!-- Optional camera support -->
     <uses-feature android:name="android.hardware.camera" android:required="false"/>
-    <!-- if you want to add camera features too just uncomment  the below line -->
-    <!--<uses-features android:name ="android.hardware.camera"/> -->
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,17 +18,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:requestLegacyExternalStorage="true">
+
+        <!-- Main Launcher Activity -->
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Other Activities -->
         <activity android:name=".MoreActivity" android:exported="false"/>
         <activity android:name=".LatestOcrActivity" android:exported="false"/>
+
+        <!-- Newly added headless OCR result activity -->
+        <activity
+            android:name=".ResultActivity"
+            android:exported="true"
+            android:theme="@style/Theme.OCR.Silent">
+
+            <intent-filter>
+                <action android:name="me.vivekanand.android_ocrsample.ACTION_OCR_PROCESS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Google Vision API dependency -->
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="ocr" />
+
     </application>
 </manifest>
