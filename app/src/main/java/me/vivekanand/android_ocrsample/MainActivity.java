@@ -26,9 +26,9 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.text.TextBlock;
-import com.google.android.gms.vision.text.TextRecognizer;
+//import com.google.android.gms.vision.Frame;
+//import com.google.android.gms.vision.text.TextBlock;
+//import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void inspectFromBitmap(Bitmap bitmap) {
+    /*private void inspectFromBitmap(Bitmap bitmap) {
         TextRecognizer textRecognizer = new TextRecognizer.Builder(this).build();
         try {
             if (!textRecognizer.isOperational()) {
@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
             textRecognizer.release();
             hideLoader();
         }
-    }
+    }*/
 
     private void inspect(Uri uri) {
         showLoader();
@@ -270,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
                 hideLoader();
                 return;
             }
-            inspectFromBitmap(bitmap);
+            //inspectFromBitmap(bitmap);
         } catch (FileNotFoundException e) {
             Log.w(TAG, "Failed to find the file: " + uri, e);
             Toast.makeText(this, "Image file not found", Toast.LENGTH_LONG).show();

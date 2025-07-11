@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
+import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +21,8 @@ import java.io.File
 class OcrWorker(appContext: Context, params: WorkerParameters) :
     CoroutineWorker(appContext, params) {
 
-    private val imagePath = "/storage/emulated/0/NonSync/gctemp/g.jpg"
+    private val imagePath = "/sdcard/NonSync/gctemp/g.jpg"
+//    private val imagePath = "/storage/emulated/0/NonSync/gctemp/g.jpg"
 
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
         val prefs = applicationContext.getSharedPreferences("ocr_prefs", Context.MODE_PRIVATE)
@@ -31,10 +33,10 @@ class OcrWorker(appContext: Context, params: WorkerParameters) :
             sendResultBroadcastToAutomagic("error")
             return@withContext Result.failure()
         }
-
         val bitmap = loadBitmap(imagePath)
+
         if (bitmap == null) {
-            notifyError("Image not found or unreadable. #GCERR1")
+            //notifyError("Image not found or unreadable. #GCERR1")
             sendResultBroadcastToAutomagic("error")
             return@withContext Result.failure()
         }
@@ -99,6 +101,7 @@ class OcrWorker(appContext: Context, params: WorkerParameters) :
             val file = File(path)
             if (file.exists()) BitmapFactory.decodeFile(file.absolutePath) else null
         } catch (e: Exception) {
+            Log.e("OcrWorker", "Error loading bitmap: ${e.message}")
             null
         }
     }

@@ -15,21 +15,21 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import com.google.mlkit.vision.common.InputImage;
-import com.google.mlkit.vision.text.TextRecognition;
-import com.google.mlkit.vision.text.TextRecognizer;
-import com.google.mlkit.vision.text.Text;
-import com.googlecode.tesseract.android.TessBaseAPI;
+//import com.google.mlkit.vision.common.InputImage;
+//import com.google.mlkit.vision.text.TextRecognition;
+//import com.google.mlkit.vision.text.TextRecognizer;
+//import com.google.mlkit.vision.text.Text;
+//import com.googlecode.tesseract.android.TessBaseAPI;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+//import java.io.File;
+//import java.io.FileOutputStream;
+//import java.io.InputStream;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
+//import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 
 public class LatestOcrActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_MLKIT = 101;
@@ -110,11 +110,11 @@ public class LatestOcrActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && data != null && data.getData() != null) {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
-                if (requestCode == REQUEST_IMAGE_MLKIT) {
+                /*if (requestCode == REQUEST_IMAGE_MLKIT) {
                     runMlKitOcrOnBitmap(bitmap);
                 } else if (requestCode == REQUEST_IMAGE_TESSERACT) {
                     runTesseractOcrOnBitmap(bitmap);
-                } else if (requestCode == REQUEST_IMAGE_CLOUD) {
+                } else */ if (requestCode == REQUEST_IMAGE_CLOUD) {
                     runCloudVisionOcrOnBitmap(bitmap);
                 }
             } catch (Exception e) {
@@ -124,6 +124,7 @@ public class LatestOcrActivity extends AppCompatActivity {
     }
 
     // ML Kit OCR logic
+/*
     private void runMlKitOcrOnBitmap(Bitmap bitmap) {
         InputImage image = InputImage.fromBitmap(bitmap, 0);
         TextRecognizer recognizer = TextRecognition.getClient(new TextRecognizerOptions.Builder().build());
@@ -160,6 +161,7 @@ public class LatestOcrActivity extends AppCompatActivity {
             showOcrResult("Tesseract OCR", "Error: " + e.getMessage());
         }
     }
+*/
 
     // Cloud Vision OCR logic
     private void runCloudVisionOcrOnBitmap(Bitmap bitmap) {

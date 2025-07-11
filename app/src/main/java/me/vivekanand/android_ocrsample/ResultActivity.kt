@@ -10,6 +10,8 @@ class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //NotificationHelper.postErrorNotification(applicationContext, "Activity started")
+
         val workRequest = OneTimeWorkRequestBuilder<OcrWorker>()
             .setInputData(workDataOf())
             .build()
