@@ -18,12 +18,12 @@
     </style>
     <!-- Your app's regular theme -->
 
-    <!-- ✅ Transparent floating theme for headless activities -->
+    <!-- ✅ Transparent floating theme for headless activities
     <style name="Theme.OCR.Silent" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
-    </style>
+    </style> -->
 </resources>

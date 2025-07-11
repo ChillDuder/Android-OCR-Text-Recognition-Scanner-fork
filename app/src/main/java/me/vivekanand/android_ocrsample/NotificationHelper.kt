@@ -13,7 +13,7 @@ object NotificationHelper {
     fun postErrorNotification(context: Context, contentText: String) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
-                CHANNEL_ID, "Result Activity Channel",
+                CHANNEL_ID, "OCR Errors",
                 NotificationManager.IMPORTANCE_HIGH
             )
             context.getSystemService(NotificationManager::class.java)

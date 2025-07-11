@@ -35,13 +35,21 @@
         <activity
             android:name=".ResultActivity"
             android:exported="true"
-            android:theme="@style/Theme.OCR.Silent">
-
+            android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
-                <action android:name="me.vivekanand.android_ocrsample.ACTION_OCR_PROCESS" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="me.vivekanand.android_ocrsample.ACTION_OCR_PROCESS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false">
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup" />
+        </provider>
 
         <!-- Google Vision API dependency -->
         <meta-data
