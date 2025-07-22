@@ -46,8 +46,8 @@
 
         <service
             android:name=".OcrTriggerService"
-            android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+            android:exported="true" />
+            <!--<serviceandroid:permission="android.permission.BIND_JOB_SERVICE" /> -->
 
         <provider
             android:name="androidx.startup.InitializationProvider"
